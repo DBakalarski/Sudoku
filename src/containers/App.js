@@ -28,10 +28,25 @@ class App extends React.Component {
 			if(i == index) return e.target.value;
 			else return item;
 		});
+		//console.log('e.target value: ' + e.target.value);
+		//console.log('item: ' + item);
 		this.setState({ board: tempBoard.join("") })
 	}
-	solve(elem) {
-		let sudokuSolve = sudoku.solve(elem)
+	restart() {
+		let restartBoard = this.state.initialBoard
+		this.setState({
+			board: restartBoard
+		})
+	}
+	check() {
+		let sudokuSolve = sudoku.solve(this.state.board)
+		if (this.state.board == sudokuSolve)
+			console.log('Wygrana')
+		else
+			console.log('Przegrana')
+	}
+	solve() {
+		let sudokuSolve = sudoku.solve(this.state.board)
 		this.setState({
 			board: sudokuSolve
 			//initialBoard: sudokuSolve
@@ -48,14 +63,16 @@ class App extends React.Component {
 					 <button onClick={ () => this.randBoard("easy") }>Easy</button>
 					 <button onClick={ () => this.randBoard("medium") }>Medium</button>
 					 <button onClick={ () => this.randBoard("hard") }>Hard</button>
-					 <button onClick={ () => this.solve(randomBoard) }>Solve</button>
+					 <button onClick={ () => this.restart() }>Restart</button>
+					 <button onClick={ () => this.check() }>Check solution</button>
+					 <button onClick={ () => this.solve() }>Solve</button>
 				</div>
 
         <div className={"Board"}>
           { this.state.board.split("").map((item, index) => {
 
 						if(this.state.initialBoard.split("")[index] != ".") return <input key={index} disabled value={item} />
-						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} maxlength="1" /*type="number"*/ value={item} />
+						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} maxLength="1" /*type="number"*/ value={item}  />
 					})
 				}
 				</div>

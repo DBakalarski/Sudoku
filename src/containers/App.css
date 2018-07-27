@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+}
+.WelcomeHeader {
+    color: green;
+}
+.Board {
+    display: flex;
+}
+input {
+    width: 10%;
+    height: 30px;
+}

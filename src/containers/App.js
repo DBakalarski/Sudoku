@@ -58,17 +58,14 @@ class App extends React.Component {
 			<div>
 				<h1>Sudoku APP</h1>
 
-				<div className={"WelcomeHeader"}>
-           <h2>Witamy w grze</h2>
-					 <button onClick={ () => this.randBoard("easy") }>Easy</button>
-					 <button onClick={ () => this.randBoard("medium") }>Medium</button>
-					 <button onClick={ () => this.randBoard("hard") }>Hard</button>
-					 <button onClick={ () => this.restart() }>Restart</button>
-					 <button onClick={ () => this.check() }>Check solution</button>
-					 <button onClick={ () => this.solve() }>Solve</button>
+				<div className={styles.WelcomeHeader}>
+           			<h2>Witamy w grze</h2>
+					 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
+					 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
+					 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
 				</div>
 
-        <div className={"Board"}>
+        <div className={styles.Board}>
           { this.state.board.split("").map((item, index) => {
 
 						if(this.state.initialBoard.split("")[index] != ".") return <input key={index} disabled value={item} />
@@ -76,7 +73,11 @@ class App extends React.Component {
 					})
 				}
 				</div>
-
+		<div className={styles.ButtonBottom}>
+					 <button className={styles.Restart} onClick={ () => this.restart() }>Restart</button>
+					 <button className={styles.Check} onClick={ () => this.check() }>Check solution</button>
+					 <button className={styles.Solve} onClick={ () => this.solve() }>Solve</button>
+		</div>
 
 
 			</div>

@@ -75,7 +75,7 @@ class App extends React.Component {
 				</div>
 		<div className={styles.ButtonBottom}>
 					 <button className={styles.Restart} onClick={ () => this.restart() }>Restart</button>
-					 <button className={styles.Check} onClick={ () => this.check() }>Check solution</button>
+					 <button className={styles.Check} onClick={ () => this.check() }>Check</button>
 					 <button className={styles.Solve} onClick={ () => this.solve() }>Solve</button>
 		</div>
 

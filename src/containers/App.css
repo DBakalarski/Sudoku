@@ -18,10 +18,7 @@ h1 {
     flex: 100%;
     text-align: center;
 }
-.Level {
-    display: flex;
-}
-
+/****************** BUTTONS ***********/
 .WelcomeHeader button, .ButtonBottom button{
     border: 1px solid black;
     margin-right: 30px;
@@ -31,6 +28,9 @@ h1 {
     font-size: 35px;
     background-color:rgba(255,0,0,0)
 }
+
+/* Butons level-game */
+
 .WelcomeHeader button.Easy, button.Medium, button.Hard {
     background-position: 100% 0;
     background-size: 300%;
@@ -55,27 +55,44 @@ h1 {
     border-color: #EA2027;
     background-image: linear-gradient(90deg, #EA2027 50%, transparent 50%);
 }
-.WelcomeHeader button:nth-child(5) {
-    color: #6F1E51;
-    border-color: #6F1E51;
-}
-.WelcomeHeader button:nth-child(6) {
-    color: #2ecc71;
-    border-color: #2ecc71;
-}
-.WelcomeHeader button:nth-child(7) {
-    color: #9980FA;
-    border-color: #9980FA;
-}
 
 .WelcomeHeader button.Easy:hover, button.Medium:hover, button.Hard:hover {
     background-position: 0 100%;    
     color: white;
 }
 
-.ButtonBottom {
+/* Butons restart/check/solve */
 
+.ButtonBottom .Restart {
+    color: #6F1E51;
+    border-color: #6F1E51;
+    transition: 0.5s;
 }
+.ButtonBottom .Restart:hover {
+    color: white;
+    background-color: #6F1E51;
+}
+
+.ButtonBottom .Check {
+    color: #2ecc71;
+    border-color: #2ecc71;
+    transition: 0.5s;
+}
+.ButtonBottom .Check:hover {
+    color: white;
+    background-color: #2ecc71;
+}
+
+.ButtonBottom .Solve {
+    color: #9980FA;
+    border-color: #9980FA;
+    transition: 0.5s;
+}
+.ButtonBottom .Solve:hover {
+    color: white;
+    background-color: #9980FA;
+}
+/****************** BOARD **************/
 
 .Board {
     display: flex;
@@ -96,6 +113,7 @@ input {
     padding: 0;
 }
 
+/* bold line */
 
 input:nth-child(1) {
     border-left: 2px solid black;

@@ -24,13 +24,19 @@ class App extends React.Component {
 	}
 
 	updateNumber(e, index) {
-		let tempBoard = this.state.board.split("").map((item, i) => {
-			if(i == index) return e.target.value;
-			else return item;
-		});
-		//console.log('e.target value: ' + e.target.value);
-		//console.log('item: ' + item);
-		this.setState({ board: tempBoard.join("") })
+		if (e.target.value > 0 && e.target.value <= 9 && isNaN(e.target.value) === false) {
+			let tempBoard = this.state.board.split("").map((item, i) => {
+				//console.log('e.target value: ' + e.target.value);
+				//console.log('item: ' + item);
+				if(i == index) return e.target.value;
+				else return item;
+
+			});
+			
+			this.setState({ board: tempBoard.join("") })
+		} else {
+			return false;
+		}
 	}
 	restart() {
 		let restartBoard = this.state.initialBoard
@@ -59,7 +65,6 @@ class App extends React.Component {
 				<h1>Sudoku APP</h1>
 
 				<div className={styles.WelcomeHeader}>
-           			<h2>Witamy w grze</h2>
 					 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
 					 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
 					 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
@@ -69,7 +74,7 @@ class App extends React.Component {
           { this.state.board.split("").map((item, index) => {
 
 						if(this.state.initialBoard.split("")[index] != ".") return <input key={index} disabled value={item} />
-						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} maxLength="1" /*type="number"*/ value={item}  />
+						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} type="number" value={item}  />
 					})
 				}
 				</div>

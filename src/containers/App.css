@@ -28,6 +28,10 @@ h1 {
     font-size: 35px;
     background-color:rgba(255,0,0,0)
 }
+.WelcomeHeader button:hover, .ButtonBottom button:hover {
+    cursor: pointer;
+
+}
 
 /* Butons level-game */
 
@@ -35,6 +39,17 @@ h1 {
     background-position: 100% 0;
     background-size: 300%;
     transition: 0.8s;
+}
+.WelcomeHeader button.Easy{
+transition: 0.5s;
+}
+
+.WelcomeHeader button.Medium{
+transition: 0.9s;
+}
+
+.WelcomeHeader button.Hard{
+ transition: 1.3s;   
 }
 
 .WelcomeHeader button.Easy {
@@ -63,6 +78,9 @@ h1 {
 
 /* Butons restart/check/solve */
 
+.ButtonBottom {
+    margin-bottom: 30px;
+}
 .ButtonBottom .Restart {
     color: #6F1E51;
     border-color: #6F1E51;
@@ -96,7 +114,7 @@ h1 {
 
 .Board {
     display: flex;
-    width: 50vw;
+    width: 35vw;
     flex-wrap: wrap;
     margin: auto;
     margin-top: 50px;
@@ -108,8 +126,10 @@ h1 {
 input {
     border: 0;
     text-align: center;
-    width: 10.5%;
-    height: 40px;
+    width: 3.5vw;
+    height: 3.5vw;
+    //width: 10.5%;
+    //height: 40px;
     padding: 0;
 }
 

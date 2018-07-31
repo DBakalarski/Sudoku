@@ -6,10 +6,18 @@ body {
     font-family: 'Lato', sans-serif;
 
 }
+
+.color {
+    background-color: red;
+}
+
 h1 {
     text-align: center;
 }
-.WelcomeHeader, .ButtonBottom {
+.NewGame {
+    text-align: center;
+}
+.WelcomeHeader, .ButtonBottom , {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

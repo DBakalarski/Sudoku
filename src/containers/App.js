@@ -10,7 +10,8 @@ class App extends React.Component {
 
 		this.state = {
 			board: '',
-			initialBoard: ''
+			initialBoard: '',
+			showMe:false
 		}
 
 	}
@@ -26,8 +27,6 @@ class App extends React.Component {
 	updateNumber(e, index) {
 		if (e.target.value > 0 && e.target.value <= 9 && isNaN(e.target.value) === false) {
 			let tempBoard = this.state.board.split("").map((item, i) => {
-				//console.log('e.target value: ' + e.target.value);
-				//console.log('item: ' + item);
 				if(i == index) return e.target.value;
 				else return item;
 
@@ -37,6 +36,11 @@ class App extends React.Component {
 		} else {
 			return false;
 		}
+	}
+	operation() {
+	  this.setState({
+	    showMe:!this.state.showMe
+	  })
 	}
 	restart() {
 		let restartBoard = this.state.initialBoard
@@ -51,11 +55,16 @@ class App extends React.Component {
 		else
 			console.log('Przegrana')
 	}
+	/*hide(element) {
+
+		this.setState({
+			button: 
+		})
+	}*/
 	solve() {
 		let sudokuSolve = sudoku.solve(this.state.board)
 		this.setState({
 			board: sudokuSolve
-			//initialBoard: sudokuSolve
 		})
 	}
 
@@ -63,12 +72,17 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>Sudoku APP</h1>
-
-				<div className={styles.WelcomeHeader}>
-					 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
-					 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
-					 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
-				</div>
+					<button className={styles.NewGame} onClick={ () => this.operation() }>New Game</button>
+				{ 
+						this.state.showMe?
+					<div className={styles.WelcomeHeader}>
+						 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
+						 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
+						 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
+					</div>
+						:null
+				}
+				
 
         <div className={styles.Board}>
           { this.state.board.split("").map((item, index) => {

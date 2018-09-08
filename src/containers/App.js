@@ -11,7 +11,8 @@ class App extends React.Component {
 		this.state = {
 			board: '',
 			initialBoard: '',
-			showMe:false
+			//showMe:false,
+			showBulkActions: false
 		}
 
 	}
@@ -37,6 +38,9 @@ class App extends React.Component {
 			return false;
 		}
 	}
+	hasMultipleSelected() {
+		return true;
+	}
 	operation() {
 	  this.setState({
 	    showMe:!this.state.showMe
@@ -55,12 +59,6 @@ class App extends React.Component {
 		else
 			console.log('Przegrana')
 	}
-	/*hide(element) {
-
-		this.setState({
-			button: 
-		})
-	}*/
 	solve() {
 		let sudokuSolve = sudoku.solve(this.state.board)
 		this.setState({
@@ -72,16 +70,15 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>Sudoku APP</h1>
-					<button className={styles.NewGame} onClick={ () => this.operation() }>New Game</button>
-				{ 
-						this.state.showMe?
-					<div className={styles.WelcomeHeader}>
+					<button className={styles.NewGame} onClick={ () => this.showBulkActions() }>New Game</button>
+					
+					<div className={"styles." + (this.props.showBulkActions ? 'show' : 'hidden')}>
 						 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
 						 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
 						 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
 					</div>
-						:null
-				}
+						
+				
 				
 
         <div className={styles.Board}>
@@ -92,6 +89,7 @@ class App extends React.Component {
 					})
 				}
 				</div>
+ 
 		<div className={styles.ButtonBottom}>
 					 <button className={styles.Restart} onClick={ () => this.restart() }>Restart</button>
 					 <button className={styles.Check} onClick={ () => this.check() }>Check</button>

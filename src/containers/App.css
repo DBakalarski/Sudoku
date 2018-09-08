@@ -26,6 +26,16 @@ h1 {
     flex: 100%;
     text-align: center;
 }
+/****** DISPLAY *********/
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
 /****************** BUTTONS ***********/
 .WelcomeHeader button, .ButtonBottom button{
     border: 1px solid black;

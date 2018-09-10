@@ -11,8 +11,8 @@ class App extends React.Component {
 		this.state = {
 			board: '',
 			initialBoard: '',
-			//showMe:false,
-			showBulkActions: false
+			buttonsVisible: false
+			//newGameButtonVisible: true
 		}
 
 	}
@@ -38,9 +38,6 @@ class App extends React.Component {
 			return false;
 		}
 	}
-	hasMultipleSelected() {
-		return true;
-	}
 	operation() {
 	  this.setState({
 	    showMe:!this.state.showMe
@@ -55,9 +52,9 @@ class App extends React.Component {
 	check() {
 		let sudokuSolve = sudoku.solve(this.state.board)
 		if (this.state.board == sudokuSolve)
-			console.log('Wygrana')
+			alert('Wygrana!')
 		else
-			console.log('Przegrana')
+			alert('Próbuj dalej!')
 	}
 	solve() {
 		let sudokuSolve = sudoku.solve(this.state.board)
@@ -70,31 +67,28 @@ class App extends React.Component {
 		return (
 			<div>
 				<h1>Sudoku APP</h1>
-					<button className={styles.NewGame} onClick={ () => this.showBulkActions() }>New Game</button>
-					
-					<div className={"styles." + (this.props.showBulkActions ? 'show' : 'hidden')}>
-						 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
-						 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
-						 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
-					</div>
-						
+				<button className={styles.NewGame} style={{ display: (this.state.buttonsVisible) ? 'none' : 'flex' }} onClick={ () => this.setState({ buttonsVisible:true }) }>New Game</button>
 				
-				
+				<div className={styles.WelcomeHeader} style={{ display: (this.state.buttonsVisible) ? 'flex' : 'none' }} >
+					 <button className={styles.Easy} onClick={ () => this.randBoard("easy") }>Easy</button>
+					 <button className={styles.Medium} onClick={ () => this.randBoard("medium") }>Medium</button>
+					 <button className={styles.Hard} onClick={ () => this.randBoard("hard") }>Hard</button>
+				</div>
 
-        <div className={styles.Board}>
-          { this.state.board.split("").map((item, index) => {
+        		<div className={styles.Board}>
+          			{ this.state.board.split("").map((item, index) => {
 
 						if(this.state.initialBoard.split("")[index] != ".") return <input key={index} disabled value={item} />
 						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} type="number" value={item}  />
 					})
-				}
+					}
 				</div>
  
-		<div className={styles.ButtonBottom}>
+				<div className={styles.ButtonBottom} style={{ display: (this.state.buttonsVisible) ? 'flex' : 'none' }}>
 					 <button className={styles.Restart} onClick={ () => this.restart() }>Restart</button>
 					 <button className={styles.Check} onClick={ () => this.check() }>Check</button>
 					 <button className={styles.Solve} onClick={ () => this.solve() }>Solve</button>
-		</div>
+				</div>
 
 
 			</div>

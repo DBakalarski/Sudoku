@@ -27,7 +27,7 @@ class App extends React.Component {
 
 	updateNumber(e, index) {
 		if (e.target.value > 0 && e.target.value <= 9 && isNaN(e.target.value) === false) {
-			let tempBoard = this.state.board.split("").map((item, i) => {
+			let tempBoard = this.state.board.toString().split("").map((item, i) => {
 				if(i == index) return e.target.value;
 				else return item;
 
@@ -52,12 +52,12 @@ class App extends React.Component {
 	check() {
 		let sudokuSolve = sudoku.solve(this.state.board)
 		if (this.state.board == sudokuSolve)
-			alert('Wygrana!')
+			alert('Win!')
 		else
-			alert('Próbuj dalej!')
+			alert('Try again!')
 	}
 	solve() {
-		let sudokuSolve = sudoku.solve(this.state.board)
+		let sudokuSolve = sudoku.solve(this.state.initialBoard)
 		this.setState({
 			board: sudokuSolve
 		})
@@ -76,7 +76,7 @@ class App extends React.Component {
 				</div>
 
         		<div className={styles.Board}>
-          			{ this.state.board.split("").map((item, index) => {
+          			{ this.state.board.toString().split("").map((item, index) => {
 
 						if(this.state.initialBoard.split("")[index] != ".") return <input key={index} disabled value={item} />
 						else return <input key={index} onChange={(e) => this.updateNumber(e, index)} type="number" value={item}  />
